@@ -9,11 +9,12 @@ int main(){
 		printf("\nIdade: ");
 		scanf("%d", &age);
 		if(age >= 18)
-			printf("Maior de idade");
+			printf("Maior de idade\n");
 		else if(age < 0)
-			break;
+			printf("Idade invalida\n");
 		else
-			printf("Menor de idade");
-	}
-    return 0;
+			printf("Menor de idade\n");
+  }
+    
+  return 0;
 }
