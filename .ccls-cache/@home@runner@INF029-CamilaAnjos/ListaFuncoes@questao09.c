@@ -216,15 +216,13 @@ int validarNascimento(char dataNasc[], int erros[]){
     if(mes == 2){
         if((ano % 400 == 0) || ((ano % 4 == 0) && (ano % 100 != 0))) {
             // Ano Bissexto
-            if(mes == 2)
                 maxDias = 29;
         }
         else {
             // Ano não bissexto
-            if(mes == 2)
                 maxDias = 28;
         }
-        if(mes == 2 && dia > maxDias)
+        if(dia > maxDias)
             erros[3] = -1;
             // printf("Erro. O mes %d teve %d dias neste ano.", mes, maxDias);
     }
