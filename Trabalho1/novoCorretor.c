@@ -72,7 +72,6 @@ void testQ2(){
     printf("%d\n", dma.qtdMeses == 0);
     printf("%d\n", dma.qtdAnos == 1);
 
-	printf("\n---------\n");
     //teste 2 - retornos
     qtdDias = -1;
     qtdMeses = -1;
@@ -92,8 +91,6 @@ void testQ2(){
     strcpy(datafinal,"01/06/2015");
     dma = q2(datainicial, datafinal);
     printf("%d\n",dma.retorno == 4);
-
-	printf("\n---------\n");
 	
     //teste 3
     qtdDias = -1;
@@ -107,8 +104,6 @@ void testQ2(){
     printf("%d\n",dma.qtdDias == 1);
     printf("%d\n",dma.qtdMeses == 1);
     printf("%d\n",dma.qtdAnos == 0);
-
-	printf("\n---------\n");
 	
     //teste 4
     qtdDias = -1;
@@ -122,8 +117,6 @@ void testQ2(){
     printf("%d\n",dma.qtdDias == 29); // erro
     printf("%d\n",dma.qtdMeses == 0);
     printf("%d\n",dma.qtdAnos == 1);
-
-	printf("\n---------\n");
 	
     //teste 5
     qtdDias = -1;
@@ -134,11 +127,9 @@ void testQ2(){
     strcpy(datafinal,"25/08/2017");
     dma = q2(datainicial, datafinal);
     printf("%d\n",dma.retorno == 1);
-    printf("%d\n",dma.qtdDias == 30); // erro
-    printf("%d\n",dma.qtdMeses == 0); //erro
+    printf("%d\n",dma.qtdDias == 30);
+    printf("%d\n",dma.qtdMeses == 0);
     printf("%d\n",dma.qtdAnos == 0);
-
-	printf("\n---------\n");
 	
     //teste 6
     qtdDias = -1;
@@ -153,8 +144,6 @@ void testQ2(){
     printf("%d\n",dma.qtdMeses == 1);
     printf("%d\n",dma.qtdAnos == 0);
 
-	printf("\n---------\n");
-
     //teste 7
     qtdDias = -1;
     qtdMeses = -1;
@@ -167,8 +156,6 @@ void testQ2(){
     printf("%d\n",dma.qtdDias == 4); // erro
     printf("%d\n",dma.qtdMeses == 0);
     printf("%d\n",dma.qtdAnos == 1);
-
-	printf("\n---------\n");
 		
     //teste 8
     qtdDias = -1;
@@ -182,8 +169,6 @@ void testQ2(){
     printf("%d\n",dma.qtdDias == 5); // erro
     printf("%d\n",dma.qtdMeses == 0);
     printf("%d\n",dma.qtdAnos == 1);
-
-	printf("\n---------\n");
 		
     //teste 9
     qtdDias = -1;
@@ -194,7 +179,7 @@ void testQ2(){
     strcpy(datafinal,"29/02/2016");
     dma = q2(datainicial, datafinal);
     printf("%d\n",dma.retorno == 1);
-    printf("%d\n",dma.qtdDias == 1); // erro
+    printf("%d\n",dma.qtdDias == 1);
     printf("%d\n",dma.qtdMeses == 1);
     printf("%d\n",dma.qtdAnos == 0);
 

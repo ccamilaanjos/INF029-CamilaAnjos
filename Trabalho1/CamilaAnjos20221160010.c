@@ -26,9 +26,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-
-// gcc corretor.c CamilaAnjos20221160010.c -o T1 -lm
-
 /*
 ## função utilizada para testes  ##
 
@@ -305,7 +302,91 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 	
 	//calcule a distancia entre as datas
 
+	int i, j, contadorDia = 0, flag = 0;
+	int maxDias;
+
+	if(iAno == fAno){ // se as datas forem no mesmo ano
+		dma.qtdAnos = 0;
+		if(iMes == fMes){ // se os meses forem iguais
+			dma.qtdMeses = 0;
+			dma.qtdDias = fDia - iDia;
+		}
+		else{ // mes inicial menor
+			maxDias = contarDias(i, fAno); // descobrindo quantos dias esse mês tem
+			
+		    for(i = iMes; i <= fMes; i++){
+				
+		        for(j = iDia + 1; j <= maxDias; j++){
+					
+		            contadorDia++;
+					if(contadorDia == maxDias){
+						dma.qtdMeses++;
+						contadorDia = 0;
+						maxDias = contarDias(i, fAno);
+					}
+					
+		            if(i == fMes && j == fDia){
+		                flag = 1;
+		                break;
+		            }
+		        }
+				iDia = 0;
+				
+		        if(flag == 1)
+		            break;
+		    }
+			dma.qtdDias = contadorDia;
+		}
+	}
+	else{ // se as datas forem de anos diferentes
+		int ctrlAno = iAno;
+    	int ctrlMes = iMes;
+
+		maxDias = contarDias(i, ctrlAno);
 	
+		while(ctrlAno <= fAno){
+	    
+        	for(i = ctrlMes; i <= 12; i++){
+	    		// printf("Mes = %d\n", i);
+	            for(j = iDia + 1; j <= maxDias; j++){
+	    			
+	                contadorDia++;
+	    			if(contadorDia == maxDias){
+	    				dma.qtdMeses++;
+	    				contadorDia = 0;
+	    				maxDias = contarDias(i, fAno);
+	    			}
+	    			
+	    			if(dma.qtdMeses == 12){
+	    			    dma.qtdAnos++;
+	    			    dma.qtdMeses = 0;
+	    			}
+	    			
+	                if(i == fMes && j == fDia && ctrlAno == fAno){
+	                    flag = 1;
+	                    break;
+	                }
+	            }
+	    		iDia = 0;
+	    		ctrlMes = 1;
+	    		
+	            if(flag == 1)
+	                break;
+	        }
+        	
+	        ctrlAno++;
+	    	dma.qtdDias = contadorDia;
+		}
+
+		// printf("\nDias: %d", dma.qtdDias);
+		// printf("\nMeses: %d", dma.qtdMeses);
+		// printf("\nAnos: %d\n", dma.qtdAnos);
+	}
+	
+    //se tudo der certo
+	
+    dma.retorno = 1;
+    return dma;
 }
 
 /*
@@ -380,20 +461,29 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     int i, j, aux, aux2;
     int k = 0;
 
-	int auxiliar[250];
+	int auxiliarStr[250];
+	int auxiliarBsc[250];
     int m, n = 0;
     
     for(m = 0; m < strlen(strTexto); m++){
         if(strTexto[m] != -61){
-            auxiliar[n] = strTexto[m];
+            auxiliarStr[n] = strTexto[m];
+            n++;
+        }
+    }
+
+	n = 0;
+	for(m = 0; m < strlen(strBusca); m++){
+        if(strBusca[m] != -61){
+            auxiliarBsc[n] = strBusca[m];
             n++;
         }
     }
 
     for(i = 0, j = 0; i < strlen(strTexto); i++){
-        if(strBusca[j] == auxiliar[i]){
+        if(auxiliarBsc[j] == auxiliarStr[i]){
             aux = i + 1;
-            while(strBusca[j] == auxiliar[i]){
+            while(auxiliarBsc[j] == auxiliarStr[i] && j < n){
                 i++;
                 j++;
             }
@@ -451,6 +541,7 @@ int q5(int num)
     
     return num;
 
+	// gcc corretor.c CamilaAnjos20221160010.c -o T1 -lm
 }
 	
 /*
