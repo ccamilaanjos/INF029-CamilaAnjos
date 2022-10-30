@@ -275,8 +275,9 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 		return dma;
 		
     }
-	else{ // se nenhuma das datas for inválida
-		// verifique se a data final não é menor que a data inicial
+	else{ // Se nenhuma das datas for inválida
+		
+	// verifique se a data final não é menor que a data inicial
 		
 		if(iAno > fAno){ // Ano inicial maior
 			dma.retorno = 4;
@@ -284,13 +285,13 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 		}
 		else{
 			if(iAno == fAno){ // Anos iguais
-				if(iMes > fMes){ // meses iguais
+				if(iMes > fMes){ // Meses iguais
 					dma.retorno = 4;
 					return dma;
 				}
-				else{ // mes inicial menor ou igual
-					if(iMes == fMes){ // meses iguais
-						if(iDia > fDia){ // dia inicial nao pode ser maior que dia final
+				else{ // Mês inicial menor ou igual
+					if(iMes == fMes){ // Meses iguais
+						if(iDia > fDia){ // Dia inicial não pode ser maior que dia final
 							dma.retorno = 4;
 							return dma;
 						}
@@ -300,19 +301,19 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 		}
 	}
 	
-	//calcule a distancia entre as datas
+	// calcule a distancia entre as datas
 
 	int i, j, contadorDia = 0, flag = 0;
 	int maxDias;
 
-	if(iAno == fAno){ // se as datas forem no mesmo ano
+	if(iAno == fAno){ // Anos iguais
 		dma.qtdAnos = 0;
-		if(iMes == fMes){ // se os meses forem iguais
+		if(iMes == fMes){ // Se os meses forem iguais
 			dma.qtdMeses = 0;
 			dma.qtdDias = fDia - iDia;
 		}
-		else{ // mes inicial menor
-			maxDias = contarDias(i, fAno); // descobrindo quantos dias esse mês tem
+		else{ // Mês inicial menor
+			maxDias = contarDias(i, fAno); // Descobrindo quantos dias o mês tem
 			
 		    for(i = iMes; i <= fMes; i++){
 				
@@ -338,7 +339,8 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 			dma.qtdDias = contadorDia;
 		}
 	}
-	else{ // se as datas forem de anos diferentes
+	else{ // Ano inicial menor que ano final
+		
 		int ctrlAno = iAno;
     	int ctrlMes = iMes;
 
@@ -347,14 +349,14 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 		while(ctrlAno <= fAno){
 	    
         	for(i = ctrlMes; i <= 12; i++){
-	    		// printf("Mes = %d\n", i);
+				
 	            for(j = iDia + 1; j <= maxDias; j++){
-	    			
 	                contadorDia++;
+					
 	    			if(contadorDia == maxDias){
 	    				dma.qtdMeses++;
 	    				contadorDia = 0;
-	    				maxDias = contarDias(i, fAno);
+	    				maxDias = contarDias(i, ctrlAno);
 	    			}
 	    			
 	    			if(dma.qtdMeses == 12){
@@ -367,6 +369,7 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 	                    break;
 	                }
 	            }
+				
 	    		iDia = 0;
 	    		ctrlMes = 1;
 	    		
@@ -377,10 +380,6 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 	        ctrlAno++;
 	    	dma.qtdDias = contadorDia;
 		}
-
-		// printf("\nDias: %d", dma.qtdDias);
-		// printf("\nMeses: %d", dma.qtdMeses);
-		// printf("\nAnos: %d\n", dma.qtdAnos);
 	}
 	
     //se tudo der certo
@@ -402,11 +401,10 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 int q3(char *texto, char c, int isCaseSensitive)
 {
     int qtdOcorrencias = 0;
-	char textoCop[strlen(texto)]; // copia o conteúdo do texto para não alterar a string original
+	char textoCop[strlen(texto)];
     int i, j;
-
 	
-    if(isCaseSensitive){ // considerar diferenças entre maiúsculas e minúsculas
+    if(isCaseSensitive){ // Considerar diferenças entre maiúsculas e minúsculas
         for(i = 0; i < strlen(texto); i++){
             if(c == texto[i]){
                 qtdOcorrencias++;
@@ -414,7 +412,7 @@ int q3(char *texto, char c, int isCaseSensitive)
         }
     }
     
-    else{ // não considerar diferenças entre maiúsculas e minúsculas
+    else{ // Não considerar diferenças entre maiúsculas e minúsculas
 
 		for(j = 0; j < strlen(texto); j++){
 			textoCop[j] = texto[j];
@@ -464,7 +462,8 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 	int auxiliarStr[250];
 	int auxiliarBsc[250];
     int m, n = 0;
-    
+
+	// Remove acentos do texto
     for(m = 0; m < strlen(strTexto); m++){
         if(strTexto[m] != -61){
             auxiliarStr[n] = strTexto[m];
@@ -472,6 +471,7 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
         }
     }
 
+	// Remove acentos da busca
 	n = 0;
 	for(m = 0; m < strlen(strBusca); m++){
         if(strBusca[m] != -61){
@@ -480,6 +480,7 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
         }
     }
 
+	// Busca no texto e salva as posições inicial e final
     for(i = 0, j = 0; i < strlen(strTexto); i++){
         if(auxiliarBsc[j] == auxiliarStr[i]){
             aux = i + 1;
@@ -515,33 +516,25 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 
 int q5(int num)
 {
-	int MAX = 5;
-	int invertido;
-    int i, j;
-    int resto, multiplica;
-    int vetAux[MAX];
+	int digitos = 0;
+	int invertido = 0, copia = num;
+    int i;
  
-    for(i = 0; num > 0; i++){
-        if(num < 10){
-            vetAux[i] = num;
-        }
-        resto = num % 10;
+    // Conta quantos dígitos tem o número
+    while (copia != 0){
+        digitos++;
+        copia = copia / 10;
+    }
+    
+    // Multiplica o número pela potência equivalente à sua posição
+    for(i = digitos - 1; i >= 0; i--){
+        invertido = invertido + ((num % 10) * pow(10, i));
         num = num / 10;
-        vetAux[i] = resto;
     }
-    
-    multiplica = pow(10, i - 1);
-    
-    j = 0;
-    while(j < i){
-        num = num + (vetAux[j] * multiplica);
-        multiplica = multiplica / 10;
-        j++;
-    }
+
+    num = invertido;
     
     return num;
-
-	// gcc corretor.c CamilaAnjos20221160010.c -o T1 -lm
 }
 	
 /*
