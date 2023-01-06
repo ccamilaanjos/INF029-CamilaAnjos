@@ -17,16 +17,16 @@ void testeListaEncadeada();
 
 int main()
 {
-   	inicializar();
+    inicializar();
     testeInserirSemNada();
     testeCriarEstrutura();
     testeInserirComEstrutura();
-	testeExcluir();
+    testeExcluir();
     testeExcluirNumeroEspecifico();
     testeListar();
     testeRetornarTodosNumeros();
-	testeMudarTamanhoEstrutura();
-    // testeListaEncadeada();
+    testeMudarTamanhoEstrutura();
+    testeListaEncadeada();
     finalizar();
 }
 int ligado = 0;
@@ -216,6 +216,7 @@ void testeRetornarTodosNumeros()
 int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho);
 Objetivo: modificar o tamanho da estrutura auxiliar da posição 'posicao' para o novo tamanho 'novoTamanho' + tamanho atual
 Suponha o tamanho inicial = x, e novo tamanho = n. O tamanho resultante deve ser x + n. Sendo que x + n deve ser sempre >= 1
+
 Rertono (int)
     SUCESSO - foi modificado corretamente o tamanho da estrutura auxiliar
     SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
@@ -278,3 +279,4 @@ void testeListaEncadeada()
 
     printf("%d\n", inicio == NULL);
 }
+//gcc mainTeste.c EstruturaVetores.c -o t2  
